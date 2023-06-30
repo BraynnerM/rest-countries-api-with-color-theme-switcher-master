@@ -1,0 +1,79 @@
+@use '../variables'
+@use '../mixins'
+
+.filters
+    display: flex
+    justify-content: space-between
+    height: 3.6rem
+
+    .search-container
+        position: relative
+        width: 30rem
+        .search-icon
+            position: absolute
+            top: 50%
+            left: 30px
+            transform: translateY(-50%)
+            color: variables.$input-light
+            font-size: 1.45rem
+        .search-input
+            @include mixins.box-search
+            width: 30rem
+            padding: 10px 10px 10px 75px
+            font-size: 0.9rem
+            &:focus
+                outline: none
+
+    .select-container
+        width: 12.8rem
+        position: relative        
+
+        .select-box
+            @include mixins.box-search
+            width: 100%            
+            font-size: 0.86rem
+            padding: 10px 10px 10px 27px
+            color: variables.$text-color-light
+            display: flex
+            flex-direction: column
+            justify-content: space-around
+            font-weight: 600
+            cursor: default
+            user-select: none
+
+        .outline-icon
+            position: absolute
+            top: 26px
+            right: 19px
+            transform: translateY(-50%)
+            color: variables.$text-color-light
+            font-size: 0.685rem
+            cursor: pointer
+            pointer-events: none
+
+        .hide-dropdown            
+            display: none
+
+        .show-dropdown
+            display: block
+            @include mixins.box-search
+            ursor: default
+            user-select: none
+            height: 10.4rem
+            display: flex
+            flex-direction: column
+            justify-content: space-evenly            
+            padding: 0.45rem 1.67rem
+            margin-top: 4px                                              
+
+            li
+                list-style-type: none                         
+                font-size: 0.9rem
+                color: variables.$text-color-light
+                font-weight: 600                               
+                &:hover
+                    cursor: pointer                    
+                    @include mixins.box-search
+                    width: 12.8rem
+                    height: auto                    
+                                        
