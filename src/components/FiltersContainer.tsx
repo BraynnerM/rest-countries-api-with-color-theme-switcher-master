@@ -3,27 +3,57 @@ import { useState, useEffect, useRef } from 'react';
 
 import "../styles/components/filterscontainer.sass";
 
-interface FiltersContainerProps {
-  countries: { flag: string; name: string; population: number; region: string; capital: string; }[];
-}
+const FiltersContainer = ({ setFilteredCountries }) => {
+  //busca de países na api
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await fetch('../../data.json');
+      const data = await response.json();
+      setCountries(data);
+      setFilteredCountries(data);
+    } catch (error) {
+      console.error('Ocorreu um erro:', error);
+      setFilteredCountries([]);
+    }
+  };
+  const [countries, setCountries] = useState<{ flag: string, name: string, population: number, region: string, capital: string }[]>([]);
+ 
+  //fim do codigo de busca de api
 
-const FiltersContainer: React.FC<FiltersContainerProps> = ({ countries }) => {
-  //codigo novo
-  const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor digitado
-
+  //recebendo os caracteres digitados no input
+  const [searchTerm, setSearchTerm] = useState('');
   const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value)
+  }
+  //fim do codigo de guardar os valores digitados
+
+  //filtrando os paises de acordo com o que foi passado no searchTerm
+  const handleFilterCountries = () => {
+    let filteredCountries = countries;
+    if (searchTerm) {
+      const lowerSearchTerm = searchTerm.toLowerCase();
+      filteredCountries = filteredCountries.filter((country) =>
+        country.name.toLowerCase().includes(lowerSearchTerm) ||
+        country.region.toLowerCase().includes(lowerSearchTerm)
+      );
+    } else if (selectedOption && selectedOption !== "Filter by Region") {
+      filteredCountries = filteredCountries.filter((country) =>
+        country.region.toLowerCase().includes(selectedOption.toLowerCase())
+      );
+    }
+    setFilteredCountries(filteredCountries);
   };
 
-  const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().startsWith(searchTerm.toLowerCase()) // Filtro de países por nome
-  );
-  //fim do codigo novo
+  //fim do filtro onde os paises filtrados ficam na variavel filtered countries
+
+  //codigo que faz funcionar a select box personalizada
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showDropDown, setShowDropDown] = useState(false);
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const selectContainerRef = useRef<HTMLDivElement>(null);
-  console.log(countries); 
 
   const handleClick = (value: string) => {
     setSelectedOption(value);
@@ -32,17 +62,25 @@ const FiltersContainer: React.FC<FiltersContainerProps> = ({ countries }) => {
   };
 
   const handleSelectBoxClick = () => {
-    setShowDropDown(!showDropDown);
-    setShowPlaceholder(true);
-  };
+    if (showDropDown === false) {
+      setShowDropDown(!showDropDown);
+      setShowPlaceholder(true);
+    } else {
+      handleClick("Filter by Region");
+      setShowDropDown(!showDropDown);
+      setShowPlaceholder(true);
+    }
+  }
 
   const handleOutsideClick = (event: MouseEvent) => {
     if (
       selectContainerRef.current &&
       !selectContainerRef.current.contains(event.target as Node)
     ) {
-      setShowDropDown(false);
-    }
+      setShowDropDown(false); 
+      setShowPlaceholder(false);     
+
+    } 
   };
 
   useEffect(() => {
@@ -51,12 +89,22 @@ const FiltersContainer: React.FC<FiltersContainerProps> = ({ countries }) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, []);  
+  }, []);
+  //fim da select box personalizada
+  //codigo para verificar os estados dos filtros
+  useEffect(() => {
+    handleFilterCountries();
+  }, [searchTerm, selectedOption]);
+  //fim do codigo para verificar estados dos filtros
   return (
     <div className="filters">
       <div className='search-container'>
         <AiOutlineSearch className="search-icon" />
-        <input className="search-input" type="search" placeholder="Search for a country..." value={searchTerm} onChange={{handleSearchTermChange}} />
+        <input
+          className="search-input"
+          type="search"
+          placeholder="Search for a country..."
+          onChange={handleSearchTermChange} />
       </div>
       <div className='select-container' ref={selectContainerRef}>
         <span className="select-box" onClick={handleSelectBoxClick}>

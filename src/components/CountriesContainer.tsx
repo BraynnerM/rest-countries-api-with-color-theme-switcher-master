@@ -1,29 +1,14 @@
-import { useEffect, useState } from 'react';
-import FiltersContainer from './FiltersContainer';
+import { Link } from 'react-router-dom';
 
 import "../styles/components/countriescontainer.sass"
 
-const CountriesContainer = () => {
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-    const fetchData = async () => {
-        try {
-            const response = await fetch('../../data.json');
-            const data = await response.json();
-            setCountries(data);
-        } catch (error) {
-            console.error('Ocorreu um erro:', error);
-        }
-    };
-    const [countries, setCountries] = useState<{ flag: string, name: string, population: number, region: string, capital: string }[]>([]);
+const CountriesContainer = ( {filteredCountries} ) => {    
     return (
-        <>
-            <FiltersContainer countries={countries} />
-            <section className="countries">
-                {countries.map((country, index) => (
-                    <div className="country" key={index}>
+        
+        <section className="countries">
+            {filteredCountries.map((country, index) => (
+                <Link to={`/details/${index}`} className='link' key={index}>
+                    <div className="country">                        
                         <span className="country-flag">
                             <img src={country.flag} alt="country-flag" />
                         </span>
@@ -43,11 +28,11 @@ const CountriesContainer = () => {
                             </span>
                         </span>
                     </div>
-                ))}
-            </section>
-        </>
+                </Link>
+            ))}
+        </section>
+        
     );
 };
 
 export default CountriesContainer;
-

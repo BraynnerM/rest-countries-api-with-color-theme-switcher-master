@@ -5,10 +5,18 @@
     display: flex
     justify-content: space-between
     height: 3.6rem
+    gap: 1rem
+    @media (max-width: 920px)
+        flex-wrap: wrap
+        justify-content: center
 
     .search-container
         position: relative
         width: 30rem
+        @media (max-width: 690px)
+            width: 38.6rem
+            height: 5.4rem
+
         .search-icon
             position: absolute
             top: 50%
@@ -16,63 +24,87 @@
             transform: translateY(-50%)
             color: variables.$input-light
             font-size: 1.45rem
+            cursor: pointer
+            @media (max-width: 690px)
+                left: 56px
+                font-size: 2.2rem
         .search-input
             @include mixins.box-search
             width: 30rem
             padding: 10px 10px 10px 75px
             font-size: 0.9rem
+            @media (max-width: 690px)
+                padding: 10px 10px 10px 133px
+                font-size: 1.37rem
+                width: 100%
+                height: 100%
             &:focus
                 outline: none
 
     .select-container
         width: 12.8rem
-        position: relative        
+        position: relative
+        @media (max-width: 690px)
+            width: 22.5rem
+            margin-right: 16rem
+            height: 5.4rem
+            margin-top: 3.5rem
 
         .select-box
             @include mixins.box-search
-            width: 100%            
+            width: 100%
             font-size: 0.86rem
             padding: 10px 10px 10px 27px
-            color: variables.$text-color-light
             display: flex
             flex-direction: column
             justify-content: space-around
             font-weight: 600
-            cursor: default
+            cursor: pointer
             user-select: none
+            @media (max-width: 690px)
+                height: 100%
+                font-size: 1.35rem
+                padding-left: 2.6rem
 
         .outline-icon
             position: absolute
             top: 26px
             right: 19px
             transform: translateY(-50%)
-            color: variables.$text-color-light
             font-size: 0.685rem
             cursor: pointer
             pointer-events: none
+            @media (max-width: 690px)
+                top: 42px
+                right: 35px
+                font-size: 1rem
 
-        .hide-dropdown            
+        .hide-dropdown
             display: none
 
         .show-dropdown
             display: block
             @include mixins.box-search
-            ursor: default
+            cursor: default
             user-select: none
             height: 10.4rem
             display: flex
             flex-direction: column
-            justify-content: space-evenly            
+            justify-content: space-evenly
             padding: 0.45rem 1.67rem
-            margin-top: 4px                                              
+            margin-top: 4px
+            @media (max-width: 690px)
+                height: 16.5rem                
 
             li
-                list-style-type: none                         
+                list-style-type: none
                 font-size: 0.9rem
-                color: variables.$text-color-light
-                font-weight: 600                                              
+                font-weight: 600
+                @media (max-width: 690px)
+                    font-size: 1.35rem
+                    padding-left: 1.3rem
                 &:hover
-                    cursor: pointer                    
+                    cursor: pointer
                     @include mixins.box-search
-                    width: 3.8rem
-                    height: auto                
+                    width: 100%
+                    height: auto
