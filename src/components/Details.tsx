@@ -21,21 +21,55 @@ const DetailsComponent = () => {
         }
     };
 
-    const [countries, setCountries] = useState([]);
-
+    const [countries, setCountries] = useState<Country[]>([]);   
     if (countries.length === 0) {
         return null; // Retorna null se os dados ainda não foram carregados
     }
+    
+    // outros atributos do objeto country
 
-    const country = countries[id];
+    interface Country {
+        flag: string;
+        name: string;
+        nativeName: string;
+        population: number;
+        region: string;
+        subregion: string;
+        capital: string;
+        topLevelDomain: string;
+        currencies: Array<Currency>;
+        languages: Array<Language>;
+        borders: string[];
+        alpha3Code: string;
+    }
 
-    if (!country) {
+    interface Currency {
+        name: string;
+    }
+
+    interface Language {
+        name: string;
+    }
+
+    interface Border {
+        name: string;
+                        
+    }    
+
+    const filteredCountry: Country[] = countries.filter((country: Country) => {
+        if (country.name === id) {
+            return country;
+        }
+    });
+
+    if (!filteredCountry) {
         return <div>Country not found</div>;
     }
 
-    const borderCountries = country.borders && country.borders.length > 0
-        ? country.borders.map((borderCode) => {
-            const borderCountry = countries.find((c) => c.alpha3Code === borderCode);
+    const borderCountries = filteredCountry[0].borders && filteredCountry[0].borders.length > 0
+        ? filteredCountry[0].borders.map((borderCode) => {
+            
+            const borderCountry : Border   = countries.find((c) => c.alpha3Code === borderCode) ?? {name:""};
             return borderCountry ? borderCountry.name : "";
         })
         : [];
@@ -46,47 +80,47 @@ const DetailsComponent = () => {
                 <div className="details-flag">
                     <Link className="link-back" to={`/`}><HiOutlineArrowNarrowLeft /> Back</Link>
                     <div className="flag">
-                        <img src={country.flag} alt="country-flag" />
+                        <img src={filteredCountry[0].flag} alt="country-flag" />
                     </div>
                 </div>
                 <div className="details-text">
-                    <h2 className="country-name">{country.name}</h2>
+                    <h2 className="country-name">{filteredCountry[0].name}</h2>
                     <div className="country-stats">
                         <div className="country-data">
                             <span>
                                 <h3>Native Name:</h3>
-                                <p>{country.nativeName}</p>
+                                <p>{filteredCountry[0].nativeName}</p>
                             </span>
                             <span>
                                 <h3>Population: </h3>
-                                <p>{country.population.toLocaleString()}</p>
+                                <p>{filteredCountry[0].population.toLocaleString()}</p>
                             </span>
                             <span>
                                 <h3>Region:</h3>
-                                <p> {country.region}</p>
+                                <p> {filteredCountry[0].region}</p>
                             </span>
                             <span>
                                 <h3>Sub Region:</h3>
-                                <p> {country.subregion}</p>
+                                <p> {filteredCountry[0].subregion}</p>
                             </span>
                             <span>
                                 <h3>Capital:</h3>
-                                <p> {country.capital}</p>
+                                <p> {filteredCountry[0].capital}</p>
                             </span>
                         </div>
                         <div className="country-sub-data">
                             <span>
                                 <h3>Top Level Domain: </h3>
-                                <p>{country.topLevelDomain}</p>
+                                <p>{filteredCountry[0].topLevelDomain}</p>
                             </span>
                             <span>
                                 <h3>Currencies: </h3>
                                 <p>
-                                    {country.currencies && country.currencies.length > 0 ? (
-                                        country.currencies.map((currency, index) => (
+                                    {filteredCountry[0].currencies && filteredCountry[0].currencies.length > 0 ? (
+                                        filteredCountry[0].currencies.map((currency, index) => (
                                             <span key={currency.name}>
                                                 {currency.name}
-                                                {index < country.currencies.length - 1 && ", "}
+                                                {index < filteredCountry[0].currencies.length - 1 && ", "}
                                             </span>
                                         ))
                                     ) : (
@@ -97,11 +131,11 @@ const DetailsComponent = () => {
                             <span>
                                 <h3>Languages: </h3>
                                 <p>
-                                    {country.languages && country.languages.length > 0 ? (
-                                        country.languages.map((language, index) => (
+                                    {filteredCountry[0].languages && filteredCountry[0].languages.length > 0 ? (
+                                        filteredCountry[0].languages.map((language, index) => (
                                             <span key={language.name}>
                                                 {language.name}
-                                                {index < country.languages.length - 1 && ","}
+                                                {index < filteredCountry[0].languages.length - 1 && ","}
                                             </span>
                                         ))
                                     ) : (
@@ -132,4 +166,4 @@ const DetailsComponent = () => {
     );
 }
 
-export default DetailsComponent;
+    export default DetailsComponent;

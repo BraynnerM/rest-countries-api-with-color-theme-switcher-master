@@ -1,14 +1,19 @@
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 
 import "../styles/components/filterscontainer.sass";
 
-const FiltersContainer = ({ setFilteredCountries }) => {
+interface FiltersContainerProps {
+  setFilteredCountries: Dispatch<SetStateAction<{ flag: string; name: string; population: number; region: string; capital: string }[]>>;
+}
+
+const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   //busca de países na api
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const fetchData = async () => {
+  async function fetchData(): Promise<void> {
     try {
       const response = await fetch('../../data.json');
       const data = await response.json();
@@ -18,7 +23,7 @@ const FiltersContainer = ({ setFilteredCountries }) => {
       console.error('Ocorreu um erro:', error);
       setFilteredCountries([]);
     }
-  };
+  }
   const [countries, setCountries] = useState<{ flag: string, name: string, population: number, region: string, capital: string }[]>([]);
  
   //fim do codigo de busca de api
@@ -33,17 +38,23 @@ const FiltersContainer = ({ setFilteredCountries }) => {
   //filtrando os paises de acordo com o que foi passado no searchTerm
   const handleFilterCountries = () => {
     let filteredCountries = countries;
+  
+    // Filtrar por região
+    if (selectedOption && selectedOption !== "Filter by Region") {
+      filteredCountries = filteredCountries.filter((country) =>
+        country.region.toLowerCase().includes(selectedOption.toLowerCase())
+      );
+    }
+  
+    // Filtrar por searchTerm
     if (searchTerm) {
       const lowerSearchTerm = searchTerm.toLowerCase();
       filteredCountries = filteredCountries.filter((country) =>
         country.name.toLowerCase().includes(lowerSearchTerm) ||
         country.region.toLowerCase().includes(lowerSearchTerm)
       );
-    } else if (selectedOption && selectedOption !== "Filter by Region") {
-      filteredCountries = filteredCountries.filter((country) =>
-        country.region.toLowerCase().includes(selectedOption.toLowerCase())
-      );
     }
+  
     setFilteredCountries(filteredCountries);
   };
 
@@ -94,6 +105,7 @@ const FiltersContainer = ({ setFilteredCountries }) => {
   //codigo para verificar os estados dos filtros
   useEffect(() => {
     handleFilterCountries();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, selectedOption]);
   //fim do codigo para verificar estados dos filtros
   return (
