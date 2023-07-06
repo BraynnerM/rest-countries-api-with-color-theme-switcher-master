@@ -16,7 +16,7 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   }, []);
   async function fetchData(): Promise<void> {
     try {
-      const response = await fetch('../../data.json');
+      const response = await fetch('./api/data.json');
       const data = await response.json();
       setCountries(data);
       setFilteredCountries(data);
