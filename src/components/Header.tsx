@@ -1,4 +1,4 @@
-import { HiOutlineMoon } from "../../public/react-icons/hi";
+import { HiOutlineMoon } from "react-icons/Hi";
 
 import "../styles/components/header.sass"
 
