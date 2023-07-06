@@ -5,7 +5,14 @@ import FiltersContainer from "./FiltersContainer";
 import "../styles/components/MainContent.sass"
 
 const MainContent = () => {
-    const [filteredCountries, setFilteredCountries] =useState([]);    
+    interface Country {
+        flag: string;
+        name: string;
+        population: number;
+        region: string;
+        capital: string;
+      }
+    const [filteredCountries, setFilteredCountries] =useState<Country[]>([]);    
     return (
         <div className="main"> 
             <FiltersContainer setFilteredCountries={setFilteredCountries} />       

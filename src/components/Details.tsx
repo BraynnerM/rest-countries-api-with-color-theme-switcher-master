@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { HiOutlineArrowNarrowLeft } from "react-icons/Hi/index.ts";
+import { HiOutlineArrowNarrowLeft } from "react-icons/Hi";
 
 import "../styles/components/details.sass"
 
