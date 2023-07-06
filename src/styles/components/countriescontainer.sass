@@ -9,19 +9,17 @@
     gap: 2.92rem
     @media (max-width: 920px)
         justify-content: center
-        padding-top: 3rem
-        @media (max-width: 690px)
-            padding-top: 29.7%
-    
+        padding-top: 3rem         
+    @media (max-width: 450px) 
+        gap: 1.85rem     
 
     .link        
         text-decoration: none
         margin-top: .7rem        
         width: 263px        
         height: 21rem
-        @media (max-width: 690px)
-            width: 70%
-            height: 37.5rem        
+        @media (max-width: 450px)            
+            height: 21rem      
 
         .country
             @include mixins.box-search            
@@ -47,16 +45,16 @@
                 flex-direction: column
                 justify-content: space-between
                 padding: 1.5rem 1.5rem 2.5rem 1.5rem
-                @media (max-width: 690px)
-                    padding: 2.6rem 2rem 4.3rem 2.5rem                    
+                @media (max-width: 450px)
+                    padding: 1.5rem 2rem 2.5rem 1.6rem                    
 
                 h2
                     width: 100%
                     height: auto
                     font-size: 1.1rem
                     margin-bottom: .6rem
-                    @media (max-width: 690px)
-                        font-size: 2rem
+                    @media (max-width: 450px)
+                        font-size: auto
                 span
                     width: 100%
                     height: auto
@@ -68,12 +66,12 @@
                         height: auto
                         font-size: .85rem
                         margin-right: .2rem
-                        @media (max-width: 690px)
-                            font-size: 1.6rem
+                        @media (max-width: 450px)
+                            font-size: auto
 
                     p
                         width: auto
                         height: auto
                         font-size: .9rem
-                        @media (max-width: 690px)
-                            font-size: 1.6rem
+                        @media (max-width: 450px)
+                            font-size: auto

@@ -9,13 +9,15 @@
     @media (max-width: 920px)
         flex-wrap: wrap
         justify-content: center
+        
 
     .search-container
         position: relative
         width: 30rem
-        @media (max-width: 690px)
+        @media (max-width: 550px)
             width: 91%
-            height: 5.4rem
+            height: 3rem 
+            bottom: 18px          
 
         .search-icon
             position: absolute
@@ -25,17 +27,18 @@
             color: variables.$input-light
             font-size: 1.45rem
             cursor: pointer
-            @media (max-width: 690px)
-                left: 56px
-                font-size: 2.2rem
+            @media (max-width: 550px)
+                left: 28px
+                font-size: 1.2rem
+                
         .search-input
             @include mixins.box-search
             width: 30rem
             padding: 10px 10px 10px 75px
             font-size: 0.9rem
-            @media (max-width: 690px)
-                padding: 10px 10px 10px 133px
-                font-size: 1.37rem
+            @media (max-width: 550px)
+                padding: 10px 10px 10px 72px
+                font-size: .8rem
                 width: 100%
                 height: 100%
             &:focus
@@ -44,11 +47,12 @@
     .select-container
         width: 12.8rem
         position: relative
-        @media (max-width: 690px)
-            width: 54%
+        @media (max-width: 550px)
+            width: 53.7%
             margin-right: 39%
-            height: 5.4rem
-            margin-top: 3.5rem
+            height: 3rem
+            margin-top: 5px
+            
 
         .select-box
             @include mixins.box-search
@@ -61,23 +65,25 @@
             font-weight: 600
             cursor: pointer
             user-select: none
-            @media (max-width: 690px)
+            @media (max-width: 1050px)
+                min-width: 174px
+            @media (max-width: 550px)
                 height: 100%
-                font-size: 1.35rem
-                padding-left: 10%
+                font-size: .75rem
+                padding-left: 12.5%
 
         .outline-icon
             position: absolute
-            top: 26px
-            right: 19px
+            top: 45%
+            right: 9%
             transform: translateY(-50%)
             font-size: 0.685rem
             cursor: pointer
             pointer-events: none
-            @media (max-width: 690px)
-                top: 42px
-                right: 9%
-                font-size: 1rem
+            @media (max-width: 550px)
+                top: 23px
+                right: 8.8%
+                font-size: .6rem
 
         .hide-dropdown
             display: none
@@ -93,16 +99,15 @@
             justify-content: space-evenly
             padding: 0.45rem 1.67rem
             margin-top: 4px
-            @media (max-width: 690px)
-                height: 16.5rem                
+            @media (max-width: 550px)
+                height: 9.2rem                
 
             li
                 list-style-type: none
                 font-size: 0.9rem
                 font-weight: 600
-                @media (max-width: 690px)
-                    font-size: 1.35rem
-                    padding-left: 1.3rem
+                @media (max-width: 550px)
+                    font-size: .75rem                    
                 &:hover
                     cursor: pointer
                     @include mixins.box-search
