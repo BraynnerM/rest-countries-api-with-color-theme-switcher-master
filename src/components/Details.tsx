@@ -13,7 +13,7 @@ const DetailsComponent = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('./api/data.json');
+            const response = await fetch('../api/data.json');
             const data = await response.json();
             setCountries(data);
         } catch (error) {
