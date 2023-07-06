@@ -2,7 +2,7 @@ import { useState } from "react";
 import CountriesContainer from "./CountriesContainer"
 import FiltersContainer from "./FiltersContainer";
 
-import "../styles/components/MainContent.sass"
+import "../styles/components/maincontent.sass"
 
 const MainContent = () => {
     interface Country {
