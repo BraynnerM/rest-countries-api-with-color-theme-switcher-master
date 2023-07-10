@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/components/countriescontainer.sass"
 
@@ -15,8 +17,10 @@ interface Country {
   }
   
   const CountriesContainer = ({ filteredCountries }: CountriesContainerProps) => {
+    const { theme, toggleTheme } = useContext(ThemeContext);
+    const themeClassName = `countries  ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
     return (
-      <section className="countries">
+      <section className={themeClassName}>
         {filteredCountries.map((country) => (
           <Link to={`/details/${country.name}`} className="link" key={country.name}>
             <div className="country">

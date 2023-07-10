@@ -1,6 +1,7 @@
 import { AiOutlineSearch } from 'react-icons/ai';
-
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/components/filterscontainer.sass";
 
@@ -9,10 +10,13 @@ interface FiltersContainerProps {
 }
 
 const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
+  //theme context
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const themeClassName = `filters ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
   //busca de países na api
   useEffect(() => {
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   async function fetchData(): Promise<void> {
     try {
@@ -26,7 +30,7 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
     }
   }
   const [countries, setCountries] = useState<{ flag: string, name: string, population: number, region: string, capital: string }[]>([]);
- 
+
   //fim do codigo de busca de api
 
   //recebendo os caracteres digitados no input
@@ -39,14 +43,14 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   //filtrando os paises de acordo com o que foi passado no searchTerm
   const handleFilterCountries = () => {
     let filteredCountries = countries;
-  
+
     // Filtrar por região
     if (selectedOption && selectedOption !== "Filter by Region") {
       filteredCountries = filteredCountries.filter((country) =>
         country.region.toLowerCase().includes(selectedOption.toLowerCase())
       );
     }
-  
+
     // Filtrar por searchTerm
     if (searchTerm) {
       const lowerSearchTerm = searchTerm.toLowerCase();
@@ -55,7 +59,7 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
         country.region.toLowerCase().includes(lowerSearchTerm)
       );
     }
-  
+
     setFilteredCountries(filteredCountries);
   };
 
@@ -89,10 +93,10 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
       selectContainerRef.current &&
       !selectContainerRef.current.contains(event.target as Node)
     ) {
-      setShowDropDown(false); 
-      setShowPlaceholder(false);     
+      setShowDropDown(false);
+      setShowPlaceholder(false);
 
-    } 
+    }
   };
 
   useEffect(() => {
@@ -106,11 +110,11 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   //codigo para verificar os estados dos filtros
   useEffect(() => {
     handleFilterCountries();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, selectedOption]);
   //fim do codigo para verificar estados dos filtros
   return (
-    <div className="filters">
+    <div className={themeClassName}>
       <div className='search-container'>
         <AiOutlineSearch className="search-icon" />
         <input
