@@ -9,7 +9,7 @@ import "../styles/components/details.sass"
 
 const DetailsComponent = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const themeClassName = `details-container  ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
+    const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
     const { id } = useParams();    
     useEffect(() => {
         fetchData();
@@ -79,10 +79,10 @@ const DetailsComponent = () => {
         : [];
 
     return (
-        <div className={themeClassName}>
-            <div className="details-main">
+        <div className={`details-container  ${themeClassName}`}>
+            <div className={`details-main  ${themeClassName}-main`}>
                 <div className="details-flag">
-                    <Link className="link-back" to={`/`}><HiOutlineArrowNarrowLeft /> Back</Link>
+                    <Link className={`link-back  ${themeClassName}`} to={`/`}><HiOutlineArrowNarrowLeft /> Back</Link>
                     <div className="flag">
                         <img src={filteredCountry[0].flag} alt="country-flag" />
                     </div>
@@ -155,7 +155,7 @@ const DetailsComponent = () => {
                         {borderCountries.length > 0 ? (
                             <span>
                                 {borderCountries.map((borderCountry, index) => (
-                                    <span key={index}>
+                                    <span className={themeClassName} key={index}>
                                         {borderCountry}
                                     </span>
                                 ))}

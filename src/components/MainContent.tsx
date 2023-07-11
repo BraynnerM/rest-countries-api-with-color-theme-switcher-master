@@ -16,9 +16,9 @@ const MainContent = () => {
       }
     const [filteredCountries, setFilteredCountries] =useState<Country[]>([]); 
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const themeClassName = `main  ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;   
+    const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;   
     return (
-        <div className={themeClassName}> 
+        <div className={`main  ${themeClassName}-main`}> 
             <FiltersContainer setFilteredCountries={setFilteredCountries} />       
             <CountriesContainer filteredCountries={filteredCountries} />                           
         </div>

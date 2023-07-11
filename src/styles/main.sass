@@ -9,24 +9,59 @@
 body
     width: auto
     height: 100vh
-    margin: 0 auto
-    background: variables.$bg-color-light      
+    margin: 0 auto       
+ 
+    .light-theme
+        background: variables.$bg-color-light
+        transition: .4s       
 
-a, svg
+        a, svg            
+            color: variables.$text-color-light
+
+        p
+            color: variables.$text-color-light
+
+        h1
+            color: variables.$text-color-light
+
+        h2
+            color: variables.$text-color-light
+
+        h3
+            color: variables.$text-color-light
+
+        span
+            color: variables.$text-color-light
+        
+
+    .dark-theme
+        background: variables.$bg-color-dark
+        transition: .4s        
+
+        a, svg            
+            color: variables.$text-color-dark-and-light-elements
+
+        p
+            color: variables.$text-color-dark-and-light-elements
+            font-weight: 300
+
+        h1
+            color: variables.$text-color-dark-and-light-elements
+
+        h2
+            color: variables.$text-color-dark-and-light-elements
+
+        h3
+            color: variables.$text-color-dark-and-light-elements
+
+        span
+            color: variables.$text-color-dark-and-light-elements
+
+.light-theme
+    background: variables.$bg-color-light
     transition: .4s
-    color: variables.$text-color-light
 
-p
-    color: variables.$text-color-light
+.dark-theme
+    background: variables.$bg-color-dark
+    transition: .4s  
 
-h1
-    color: variables.$text-color-light
-
-h2
-    color: variables.$text-color-light
-
-h3
-    color: variables.$text-color-light
-
-span
-    color: variables.$text-color-light

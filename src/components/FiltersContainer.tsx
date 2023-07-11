@@ -12,7 +12,7 @@ interface FiltersContainerProps {
 const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   //theme context
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const themeClassName = `filters ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
+  const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
   //busca de países na api
   useEffect(() => {
     fetchData();
@@ -114,23 +114,23 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   }, [searchTerm, selectedOption]);
   //fim do codigo para verificar estados dos filtros
   return (
-    <div className={themeClassName}>
+    <div className={`filters  ${themeClassName}`}>
       <div className='search-container'>
-        <AiOutlineSearch className="search-icon" />
+        <AiOutlineSearch className={`search-icon  ${themeClassName}1`} />
         <input
-          className="search-input"
+          className={`search-input  ${themeClassName}`}
           type="search"
           placeholder="Search for a country..."
           onChange={handleSearchTermChange} />
       </div>
       <div className='select-container' ref={selectContainerRef}>
-        <span className="select-box" onClick={handleSelectBoxClick}>
+        <span className={`select-box  ${themeClassName}`} onClick={handleSelectBoxClick}>
           {showPlaceholder ? 'Filter by Region' : selectedOption}
-          <svg className='outline-icon' xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+          <svg className={`outline-icon  ${themeClassName}1`} xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
             <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
           </svg>
         </span>
-        <ul className={`${showDropDown ? 'show-dropdown' : 'hide-dropdown'}`}>
+        <ul className={`${showDropDown ? 'show-dropdown' : 'hide-dropdown'} ${themeClassName}`}>
           <li value="option1" onClick={() => handleClick("Africa")}>Africa</li>
           <li value="option2" onClick={() => handleClick("America")}>America</li>
           <li value="option3" onClick={() => handleClick("Asia")}>Asia</li>

@@ -6,10 +6,10 @@ import "../styles/components/header.sass"
 
 const Header = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const themeClassName = `header-container  ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
+    const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
 
     return (
-    <div className={themeClassName}>
+    <div className={`header-container  ${themeClassName}-header`}>
         <div className="header">
             <h1>
                 Where in the world?

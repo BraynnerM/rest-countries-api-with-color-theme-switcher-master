@@ -1,14 +1,7 @@
 @use '../variables'
-.light-theme
-    box-shadow: 0px 1px 6px 1px rgba(185, 185, 185, 0.3)
-    background: variables.$text-color-dark-and-light-elements
 
-.dark-theme
-    box-shadow: 0px 1px 6px 1px rgba(185, 185, 185, 0.3)
-    background: blue
-    
 .header-container
-    width: 100%   
+    width: 100%
 
     .header
         width: 80%
@@ -16,27 +9,27 @@
         height: 5.3rem
         display: flex
         justify-content: space-between
-        align-items: center      
+        align-items: center
         padding: 0 4.4%
-        font-size: .75rem 
-        margin: 0 auto  
-        margin-bottom: 0.3rem
+        font-size: .75rem
+        margin: 0 auto
+        
         @media (max-width: 550px)
             height: 5rem
-            width:100%
+            width: 100%
             padding: 0 1rem
-            font-size: .785rem 
-        
+            font-size: .785rem
+
         h1
             @media (max-width: 550px)
                 font-size: .9rem
-            
+
         .theme-toggler
             span
                 display: flex
                 cursor: pointer
                 .moon
-                    font-size: 1.3rem                
+                    font-size: 1.3rem
                     width: 2rem
                     @media (max-width: 550px)
                         width: 1rem
@@ -46,6 +39,18 @@
                     font-size: 1rem
                     @media (max-width: 550px)
                         font-size: .8rem
-
-
-
+.light-theme-header
+    background-color: variables.$text-color-dark-and-light-elements
+    box-shadow: 0 1px 6px 1px rgba(185, 185, 185, 0.3)
+    .header
+        color: variables.$text-color-light   
+        color: variables.$text-color-light
+        margin-bottom: 0.3rem
+.dark-theme-header
+    background-color: variables.$dark-elements    
+    .header
+        color: variables.$text-color-dark-and-light-elements
+        font-weight: 300    
+        color: variables.$text-color-dark-and-light-elements
+        margin-bottom: 0rem
+        

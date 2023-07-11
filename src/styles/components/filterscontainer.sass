@@ -23,13 +23,18 @@
             position: absolute
             top: 50%
             left: 30px
-            transform: translateY(-50%)
-            color: variables.$input-light
+            transform: translateY(-50%)            
             font-size: 1.45rem
             cursor: pointer
             @media (max-width: 550px)
                 left: 28px
                 font-size: 1.2rem
+                
+        .light-theme1
+            color: variables.$input-light            
+        .dark-theme1
+            color: variables.$text-color-dark-and-light-elements
+            
                 
         .search-input
             @include mixins.box-search
@@ -43,7 +48,18 @@
                 height: 100%
             &:focus
                 outline: none
-
+        .light-theme
+            background-color: variables.$text-color-dark-and-light-elements
+            box-shadow: 0 1px 6px 1px rgba(185, 185, 185, 0.3)
+        .light-theme::placeholder    
+            color: variables.$input-light
+        .dark-theme
+            background-color: variables.$dark-elements
+            box-shadow: 0 1px 6px 1px rgba(2, 1, 1, 0.3)
+            caret-color: variables.$text-color-dark-and-light-elements
+        .dark-theme::placeholder
+            color: variables.$text-color-dark-and-light-elements
+        
     .select-container
         width: 12.8rem
         position: relative
@@ -71,6 +87,14 @@
                 height: 100%
                 font-size: .75rem
                 padding-left: 12.5%
+        
+        .light-theme
+            background-color: variables.$text-color-dark-and-light-elements
+            box-shadow: 0 1px 6px 1px rgba(185, 185, 185, 0.3)
+        .dark-theme
+            background-color: variables.$dark-elements
+            box-shadow: 0 1px 6px 1px rgba(2, 1, 1, 0.3)
+            color: variables.$text-color-dark-and-light-elements
 
         .outline-icon
             position: absolute
@@ -84,6 +108,11 @@
                 top: 23px
                 right: 8.8%
                 font-size: .6rem
+        .light-theme1
+            fill: variables.$text-color-light
+
+        .dark-theme1
+            fill: variables.$text-color-dark-and-light-elements
 
         .hide-dropdown
             display: none
@@ -110,6 +139,14 @@
                     font-size: .75rem                    
                 &:hover
                     cursor: pointer
-                    @include mixins.box-search
-                    width: 100%
-                    height: auto
+                    scale: 1.1
+                    
+        
+        .light-theme
+            background-color: variables.$text-color-dark-and-light-elements
+            box-shadow: 0 1px 6px 1px rgba(185, 185, 185, 0.3)
+        
+        .dark-theme
+            background-color: variables.$dark-elements
+            box-shadow: 0 1px 6px 1px rgba(2, 1, 1, 0.3)
+            caret-color: variables.$text-color-dark-and-light-elements

@@ -18,12 +18,12 @@ interface Country {
   
   const CountriesContainer = ({ filteredCountries }: CountriesContainerProps) => {
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const themeClassName = `countries  ${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
+    const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
     return (
-      <section className={themeClassName}>
+      <section className={`countries  ${themeClassName}`}>
         {filteredCountries.map((country) => (
           <Link to={`/details/${country.name}`} className="link" key={country.name}>
-            <div className="country">
+            <div className={`country  ${themeClassName}`}>
               <span className="country-flag">
                 <img src={country.flag} alt="country-flag" />
               </span>

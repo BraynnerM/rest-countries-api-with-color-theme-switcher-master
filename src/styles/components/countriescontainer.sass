@@ -1,33 +1,33 @@
 @use '../mixins'
+@use'../variables'
 
 .countries
     width: 100%
-    height: 100%    
+    height: 100%
     display: flex
     flex-wrap: wrap
     justify-content: space-between
     gap: 2.92rem
     @media (max-width: 920px)
         justify-content: center
-        padding-top: 3rem         
-    @media (max-width: 450px) 
-        gap: 1.85rem     
+        padding-top: 3rem
+    @media (max-width: 450px)
+        gap: 1.85rem
 
-    .link        
+    .link
         text-decoration: none
-        margin-top: .7rem        
-        width: 263px        
+        margin-top: .7rem
+        width: 263px
         height: 21rem
-        @media (max-width: 450px)            
-            height: 21rem      
+        @media (max-width: 450px)
+            height: 21rem
 
         .country
-            @include mixins.box-search            
+            @include mixins.box-search
             width: 100%
             height: 100%
             display: flex
-            flex-direction: column            
-            
+            flex-direction: column
             &-flag
                 width: 100%
                 height: 48%
@@ -46,7 +46,7 @@
                 justify-content: space-between
                 padding: 1.5rem 1.5rem 2.5rem 1.5rem
                 @media (max-width: 450px)
-                    padding: 1.5rem 2rem 2.5rem 1.6rem                    
+                    padding: 1.5rem 2rem 2.5rem 1.6rem
 
                 h2
                     width: 100%
@@ -75,3 +75,9 @@
                         font-size: .9rem
                         @media (max-width: 450px)
                             font-size: auto
+        .light-theme
+            background-color: variables.$text-color-dark-and-light-elements
+            box-shadow: 0 1px 6px 1px rgba(185, 185, 185, 0.3)
+        .dark-theme
+            background-color: variables.$dark-elements
+            box-shadow: 0 1px 6px 1px rgba(2, 1, 1, 0.3)
