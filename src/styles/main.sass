@@ -9,13 +9,25 @@
 body
     width: auto
     height: 100vh
-    margin: 0 auto       
- 
+    margin: 0 auto
+    footer
+        text-align: center
+        color: #009db2
+        a
+            color: inherit            
+
+        a:hover
+            text-decoration: none
+            font-weight: 600            
+
+        a:visited
+            color: inherit
+
     .light-theme
         background: variables.$bg-color-light
-        transition: .4s       
+        transition: .4s
 
-        a, svg            
+        a, svg
             color: variables.$text-color-light
 
         p
@@ -32,13 +44,12 @@ body
 
         span
             color: variables.$text-color-light
-        
 
     .dark-theme
         background: variables.$bg-color-dark
-        transition: .4s        
+        transition: .4s
 
-        a, svg            
+        a, svg
             color: variables.$text-color-dark-and-light-elements
 
         p
@@ -63,5 +74,4 @@ body
 
 .dark-theme
     background: variables.$bg-color-dark
-    transition: .4s  
-
+    transition: .4s
