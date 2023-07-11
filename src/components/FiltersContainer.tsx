@@ -11,7 +11,7 @@ interface FiltersContainerProps {
 
 const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   //theme context
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
   //busca de países na api
   useEffect(() => {
@@ -92,10 +92,8 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
     if (
       selectContainerRef.current &&
       !selectContainerRef.current.contains(event.target as Node)
-    ) {
+    ) {    
       setShowDropDown(false);
-      setShowPlaceholder(false);
-
     }
   };
 

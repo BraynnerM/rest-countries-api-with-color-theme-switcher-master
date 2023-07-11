@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/components/details.sass"
 
 const DetailsComponent = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
     const { id } = useParams();    
     useEffect(() => {

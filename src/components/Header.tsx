@@ -1,5 +1,5 @@
 import { HiOutlineMoon } from "react-icons/hi";
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/components/header.sass"

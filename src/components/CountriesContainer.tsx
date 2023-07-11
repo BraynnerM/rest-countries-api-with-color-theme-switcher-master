@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/components/countriescontainer.sass"
@@ -17,7 +17,7 @@ interface Country {
   }
   
   const CountriesContainer = ({ filteredCountries }: CountriesContainerProps) => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const themeClassName = `${theme === 'light' ? 'light-theme' : 'dark-theme'}`;
     return (
       <section className={`countries  ${themeClassName}`}>
