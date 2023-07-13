@@ -1,4 +1,4 @@
-import AppRoutes from "./pages/routes"
+import AppRoutes from "./routes/routes"
 import Header from "./components/Header"
 import { Helmet } from "react-helmet"
 import { useContext } from 'react';

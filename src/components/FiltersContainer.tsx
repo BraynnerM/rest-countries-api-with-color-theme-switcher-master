@@ -2,13 +2,38 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 import React, { useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
+import { getCountries } from '../services/requestApi';
 
 import "../styles/components/filterscontainer.sass";
 
 interface FiltersContainerProps {
   setFilteredCountries: Dispatch<SetStateAction<{ flag: string; name: string; population: number; region: string; capital: string }[]>>;
 }
+interface Country {
+  flag: string;
+  name: string;
+  nativeName: string;
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string;
+  topLevelDomain: string;
+  currencies: Array<Currency>;
+  languages: Array<Language>;
+  borders: string[];
+  alpha3Code: string;
+}
 
+interface Currency {
+  name: string;
+}
+
+interface Language {
+  name: string;
+}
+
+ 
+   
 const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
   //theme context
   const { theme } = useContext(ThemeContext);
@@ -19,9 +44,8 @@ const FiltersContainer = ({ setFilteredCountries }: FiltersContainerProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   async function fetchData(): Promise<void> {
-    try {
-      const response = await fetch('./api/data.json');
-      const data = await response.json();
+    try {      
+      const data : Country[] = await getCountries();
       setCountries(data);
       setFilteredCountries(data);
     } catch (error) {

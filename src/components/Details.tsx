@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
 
 import "../styles/components/details.sass"
+import { getCountries } from "../services/requestApi";
 
 const DetailsComponent = () => {
     const { theme } = useContext(ThemeContext);
@@ -15,17 +16,17 @@ const DetailsComponent = () => {
         fetchData();
     }, []);
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch('../api/data.json');
-            const data = await response.json();
-            setCountries(data);
+    async function fetchData(): Promise<void> {
+        try {           
+          const data: Country[] = await getCountries();
+          setCountries(data);
         } catch (error) {
-            console.error('Ocorreu um erro:', error);
+          console.error('Ocorreu um erro:', error);
         }
-    };
+      }
+      
 
-    const [countries, setCountries] = useState<Country[]>([]);   
+    const [countries, setCountries] = useState<Country[]>([]);     
     if (countries.length === 0) {
         return null; // Retorna null se os dados ainda não foram carregados
     }
